@@ -72,7 +72,7 @@ async fn transfer_usdc() -> Result<String, String> {
     // Setup provider
     let wallet = EthereumWallet::from(signer);
     let rpc_service = get_rpc_service_sepolia();
-    let config = IcpConfig::new(rpc_service);
+    let config = IcpConfig::new(rpc_service).set_max_response_size(200_000).set_call_cycles(60_000_000_000);
     let provider = ProviderBuilder::new()
         .with_gas_estimation()  
         .wallet(wallet)
